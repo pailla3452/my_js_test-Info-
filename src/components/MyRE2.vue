@@ -48,21 +48,23 @@ export default {
       // ici on fabrique un 'a' en composant les éléments de la liste listItems
       // à l'aide d'un boucle
       for (var i = 0, n = this.listItems.length; i < n; i++) {
-        a += '^' + this.listItems[i] + (i === n - 1 ? '' : '|')
+        a = this.listItems[i]
+
+        let re = new RegExp(a)
+        if (!re.test(this.newItem)) {
+          this.propValue = ''
+          this.badItems.push(this.newItem)
+          return
+        }
       }
-      if (a === '') {
-        // throw Error('Le string de RE est vide')
-        return
-      }
-      let re = new RegExp(a)
-      if (re.test(this.newItem)) {
-        this.propValue = this.newItem
-        this.goodItems.push(this.newItem)
-      } else {
-        this.propValue = ''
-        this.badItems.push(this.newItem)
-      }
+
+      this.propValue = this.newItem
+      this.goodItems.push(this.newItem)
       this.newItem = ''
+      // if (a === '') {
+      //   // throw Error('Le string de RE est vide')
+      //   return
+      // }
     }
   }
 
