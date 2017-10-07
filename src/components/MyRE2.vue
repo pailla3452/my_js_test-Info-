@@ -50,7 +50,7 @@ export default {
       for (var i = 0, n = this.listItems.length; i < n; i++) {
         a += '^' + this.listItems[i] + (i === n - 1 ? '' : '|')
       }
-      if (this.newItem === '') {
+      if (a === '') {
         // throw Error('Le string de RE est vide')
         return
       }
@@ -83,5 +83,4 @@ export default {
 #good {
   color : green;
 }
-
 </style>
